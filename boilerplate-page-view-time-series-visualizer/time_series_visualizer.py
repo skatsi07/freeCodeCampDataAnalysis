@@ -29,8 +29,8 @@ def draw_bar_plot():
     df_bar['year'] = df_bar.index.year
     df_bar['month'] = df_bar.index.month_name()
 
-    # Calculate average daily page views for each month grouped by year (used Google AI for this)
-    df_bar = df_bar.groupby(['year', 'month'])['value'].mean().unstack()
+    # Calculate average daily page views for each month grouped by year
+    df_bar = df_bar.pivot_table(index='year', columns='month', values='value', aggfunc='mean')
 
     # Reorder columns so months appear in calendar order instead of alphabetical
     months = ['January', 'February', 'March', 'April', 'May', 'June', 
