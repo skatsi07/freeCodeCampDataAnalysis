@@ -17,13 +17,15 @@ def draw_plot():
     plt.plot(years_extended, res.intercept + res.slope * years_extended, 'r')
 
     # Create second line of best fit
-    res2 = linregress(data['Year'], data['CSIRO Adjusted Sea Level'])
-    plt.plot(data['Year'], res2.intercept + res2.slope * data['Year'])
-
+    res2 = linregress(data[data['Year'] >= 2000]['Year'], data[data['Year'] >= 2000]['CSIRO Adjusted Sea Level'])
+    years_recent = pd.Series(range(2000, 2051))
+    plt.plot(years_recent, res2.intercept + res2.slope * years_recent)
 
     # Add labels and title
+    plt.xlabel('Year')
+    plt.ylabel('Sea Level (inches)')
+    plt.title('Rise in Sea Level')
 
-    
     # Save plot and return data for testing (DO NOT MODIFY)
     plt.savefig('sea_level_plot.png')
     return plt.gca()
