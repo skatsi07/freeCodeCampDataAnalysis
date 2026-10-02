@@ -63,6 +63,8 @@ def draw_heat_map():
         corr,
         mask=mask,
         annot=True,
+        fmt='.1f',
+        
         ax=ax
     )
 
